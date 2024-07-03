@@ -19,7 +19,7 @@ export default function SearchBar({ onSearch }) {
         <Field className={css.field} type="text" name="topic" />
 
         <button className={css.button} type="submit">
-          Пошук
+          Search
         </button>
       </Form>
     </Formik>
