@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from "formik";
+import { toast } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
@@ -6,15 +7,19 @@ export default function SearchBar({ onSearch }) {
     <Formik
       initialValues={{ topic: "" }}
       onSubmit={(values, actions) => {
-        onSearch(values.topic);
-        actions.resetForm();
+        if (values.topic.trim() === "") {
+          toast.error("Please enter text to search for images");
+        } else {
+          onSearch(values.topic);
+          actions.resetForm();
+        }
       }}
     >
       <Form className={css.searchBarContainer}>
         <Field className={css.field} type="text" name="topic" />
 
         <button className={css.button} type="submit">
-          Search
+          Пошук
         </button>
       </Form>
     </Formik>
